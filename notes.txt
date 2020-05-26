@@ -1,0 +1,96 @@
+Session 1 notes
+- big data = structured or unstructured data difficult to process using standard techniques
+- capture > store > analyse
+- database = data storage
+- SQL = for data access and processing
+- examples of common streams
+	- software engineering: programming and development
+	- data analysis: data science and processing
+- data science steps
+	- frame the problem to solve
+	- collect and store raw data
+	- process the data
+	- explore the data
+	- in-depth analysis
+	- communicate and visualise results
+- database
+	- multiple tables within database, can relate to one another
+- relational database model RDBM
+	- stores data in tables, which relates pieces of data to one another
+	- tables
+		- consist of rows (often called records) and columns
+		- junction table: combinations of other tables, e.g. which employee is in which department, cannot exist without employee or department tables
+		- need to specify constraints per column: type of data (mandatory), size of data, format, required (not null) or not (null)
+		- NULL value - process cell without data without problems, must explicitly include
+		- data types (more info here: https://www.w3schools.com/sql/sql_datatypes.asp)
+			- char(size) i.e. fixed length string, can be from 0 to 255, 1 by default
+			- varchar(size) i.e. variable length string, can be from 0 to 65535
+			- binary
+			- float(p) where p is precision
+			- decimal(m,d) where m is total digits and d is digits after decimal
+			- boolean where 0 is FALSE and all other values are TRUE
+			- date i.e. YYYY-MM-DD
+			- time i.e. HH:MM:SS
+			- timestamp i.e. YYYY-MM-DD HH:MM:SS
+	- attribute = property of an object, e.g. data hired, date of birth, can identify using an attribute
+	- many to many relationships allowed, e.g. can have many salaries to account for pay rise
+	- https://coderpad.io/sandbox
+- relational database management system RDBMS
+	- program to create, update and administer a relational db_name
+	- SQL (Structured Query Language) most commonly used language
+	- MySQL
+		- most popular open source SQL db
+		- easy to use, inexpensive, reliable, large community
+		- poor performance when scaling, open source dev slow, missing some advanced features
+		- controlled by Oracle
+	- PostgreSQL
+		- open source, not controlled by any corporation, used for web app dev
+		- easy to use, inexpensive, reliable, large community, some additional features
+		- slower performance, not as commonly offered as managed instance
+	- Oracle DB
+		- close source (Oracle)
+		- large apps (banking - prebuilt functionality)
+		- expensive
+	- SQL Server
+		- close source (Microsoft)
+		- large enterprise apps
+		- expensive
+	- SQLite
+		- open source
+		- can store an entire db in a single file so data can be stored locally e.g. db in mobile phone
+- https://coderpad.io/sandbox to practice online
+- data in db
+	- should be singular source of truth
+	- should be easy to query
+	- want to manage and maintain data efficiently
+	- want to persist data and keep it safe
+- query syntax
+	keyword identifier keyword identifier;
+- SELECT syntax
+	- SELECT column_name1, column_name2 FROM table_name;
+	- SELECT * FROM table_name; where * is a wildcard character to select all columns from a table
+	- SELECT table.column1, table.column2 FROM table;
+	- SELECT t.column1, t.column2 FROM table t;
+	- can alias a table using ... FROM table t;
+- CREATE DATABASE and USE db syntax
+	- CREATE DATABASE db_name; not SQL standard
+	- USE db_name;
+	  SELECT * FROM table_name;
+	- SELECT * FROM db_name.table_name;
+- CREATE TABLE syntax
+	- CREATE TABLE table_name (column1 INTEGER, column2 VARCHAR(50), column3 VARCHAR(50), column4 INTEGER); define name and type at min
+- INSERT INTO syntax
+	- populate tables with data, i.e. add new rows of data
+	- keep names clear and user-friendly
+	- INSERT INTO table_name (col1, col2, col3) VALUES (val1, val2, val3);
+- INSERT INTO syntax pt 2
+	- insert multiple rows with one statement
+	- INSERT INTO table_name (col1, col2, col3) VALUES (val1,val2,val3), (val4,val5,val6), (val7,val8,val9);
+	- INSERT INTO table_name (col1, col2, col3) SELECT * FROM old_table_name WHERE old_table_name.col>10;
+- homework task 1
+	- review slide in reference materials
+	- write a paragraph about what I want to do with SQL
+- homework task 2
+	- create sweet and savoury tables in bakery database - done
+	- create parts database
+	
