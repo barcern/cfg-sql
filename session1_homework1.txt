@@ -1,0 +1,3 @@
+Session 1 homework task 1
+- preferred role: data scientist
+- why: programming and mathematical knowledge required, find patterns in data and understand phenomena
