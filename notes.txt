@@ -94,3 +94,100 @@ Session 1 notes
 	- create sweet and savoury tables in bakery database - done
 	- create parts database - done
 	
+Session 2 notes
+- DISTINCT
+	- keyword with query asking for a unique set of results
+	- SELECT DISTINCT alias.column_name FROM table_name alias;
+- WHERE
+	- checks for conditions to match for results to qualify
+	- comes after FROM
+	- Boolean expression, such as =, !=, >, < etc.
+	- SELECT alias.column_name FROM table_name alias WHERE alias.name = 'value';
+- database normalisation
+	- create table about one specific topic only
+	- benefits
+		- minimise duplicate data
+		- minimise/avoid data modification issues
+		- simplify queries
+	- common forms 
+		- 1st, 2nd and 3rd normal form
+		- 1NF, 2NF and 3NF
+- SQL constraint types
+	- constraints = rules to apply on type of data in a table
+	- ensure accuracy and reliability of data in table
+	- constraint violation > action aborted
+	- CREATE TABLE table_name (col1 Type, col2 Type, col3 Type, CONSTRAINT contstraint_name constraint_type (col_that_it_applies_to));
+	- CREATE TABLE customers (customer_id INTEGER, name VARCHAR(50), 
+	surname VARCHAR(50) NOT NULL, telephone INTEGER CONSTRAINT pk_customer_id PRIMARY KEY (customer_id));
+	- PRIMARY KEY = unique identifier per table, can be used to refer to other tables
+		- cannot be null
+		- must be unique
+		- can be multiple columns - called compound key
+		- can be defined in CREATE TABLE or ALTER TABLE statements as PRIMARY KEY
+		- CREATE TABLE table_name (col1 Type KEY DEFINITION, col2 Type, col3 Type);
+		- CREATE TABLE customers (customer_id INTEGER PRIMARY KEY, name VARCHAR(50), 
+		surname VARCHAR(50) NOT NULL, telephone INTEGER);
+	- FOREIGN KEY
+		- refers to a primary key in a different table
+		- can be non-unique
+		- allows null values
+- data integrity
+	- parent table with unique primary keys
+	- referential integrity - aggregate information across sources
+	- child table with its own primary key and a foreign key to link back to parent table
+- database relationships
+	- one to one
+	- one to many
+	- many to many
+	- many to one
+- core commands DDL
+	- DDL = Data Definition Language
+	- SELECT
+	- INSERT
+	- UPDATE
+		- modify columns in a single 
+		- UPDATE table_name SET table_name.col1 = new_value WHERE table_name.col2 = value;
+	- DELETE
+		- delete one or more rows
+		- DELETE FROM table_name; to empty table permanently
+		- DELETE FROM table_name WHERE table_name.col = value;
+	- ALTER TABLE
+		- change an existing table, add/remove columns, change data type, change constraints
+		- ALTER TABLE table_name ADD CONSTRAINT constraint_name constraint_type (col_that_it_applies_to)
+		REFERENCES table_name2 (col2_that_it_applies_to);
+	- DROP TABLE
+		- removes table and all associated data
+		- error if table is a foreign key to another table
+		- DROP TABLE table_name;
+- homework task 1
+	- review slides
+	- write queries for parts db
+- homework task 2
+	- create shop db with tables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
