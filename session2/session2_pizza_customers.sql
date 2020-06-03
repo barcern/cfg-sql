@@ -1,5 +1,7 @@
 CREATE DATABASE pizza_customers;
 USE pizza_customers;
+
+# Create tables and insert data
 CREATE TABLE customer (
     customer_id INTEGER NOT NULL,
     first_name VARCHAR(55) NOT NULL,
@@ -59,9 +61,13 @@ VALUES
 (1, 1, '2019-08-20'),
 (2, 2, '2019-03-15');
 
+# Check if data present
 SELECT * FROM email_address;
 SELECT * FROM customer;
+SELECT * FROM address;
+SELECT * FROM orders;
 
+# Set foreign key
 ALTER TABLE email_address
 ADD CONSTRAINT fk_customer_id
 FOREIGN KEY (email_address_customer_id)
@@ -69,9 +75,37 @@ REFERENCES customer (customer_id);
 
 SELECT * FROM phone_number;
 
+# Set foreign key
 ALTER TABLE phone_number
 ADD CONSTRAINT fk_phone_number_customer_id
 FOREIGN KEY (phone_number_customer_id)
 REFERENCES customer (customer_id);
 
+# Set foreign key 
+ALTER TABLE orders
+ADD CONSTRAINT fk_orders_customer
+FOREIGN KEY (orders_customer_id)
+REFERENCES customer (customer_id);
+# Show table information to check if foreign key added
+SHOW CREATE TABLE orders;
 
+# Drop foreign key from orders table
+ALTER TABLE orders
+DROP FOREIGN KEY fk_orders_customer;
+# Show table information to check if foreign key removed
+SHOW CREATE TABLE orders;
+
+# Set column to NULL
+ALTER TABLE customer
+CHANGE first_name first_name VARCHAR(55) NULL;
+
+SELECT * FROM address;
+
+# Delete
+DELETE FROM address
+WHERE building_number=20;
+
+# Drop a table
+SELECT * FROM orders;
+DROP TABLE orders;
+SELECT * FROM orders;

@@ -19,8 +19,10 @@ Session 1 notes
 	- stores data in tables, which relates pieces of data to one another
 	- tables
 		- consist of rows (often called records) and columns
-		- junction table: combinations of other tables, e.g. which employee is in which department, cannot exist without employee or department tables
-		- need to specify constraints per column: type of data (mandatory), size of data, format, required (not null) or not (null)
+		- junction table: combinations of other tables, e.g. which employee is in which department, 
+		cannot exist without employee or department tables
+		- need to specify constraints per column: type of data (mandatory), size of data, format, 
+		required (not null) or not (null)
 		- NULL value - process cell without data without problems, must explicitly include
 		- data types (more info here: https://www.w3schools.com/sql/sql_datatypes.asp)
 			- char(size) i.e. fixed length string, can be from 0 to 255, 1 by default
@@ -78,7 +80,8 @@ Session 1 notes
 	  SELECT * FROM table_name;
 	- SELECT * FROM db_name.table_name;
 - CREATE TABLE syntax
-	- CREATE TABLE table_name (column1 INTEGER, column2 VARCHAR(50), column3 VARCHAR(50), column4 INTEGER); define name and type at min
+	- CREATE TABLE table_name (column1 INTEGER, column2 VARCHAR(50), column3 VARCHAR(50), column4 INTEGER); 
+	define name and type at min
 - INSERT INTO syntax
 	- populate tables with data, i.e. add new rows of data
 	- keep names clear and user-friendly
@@ -94,43 +97,102 @@ Session 1 notes
 	- create sweet and savoury tables in bakery database - done
 	- create parts database - done
 	
+##############################################################################################################
 Session 2 notes
 - DISTINCT
-	- keyword with query asking for a unique set of results
+	- keyword requesting a unique set of results
 	- SELECT DISTINCT alias.column_name FROM table_name alias;
 - WHERE
 	- checks for conditions to match for results to qualify
 	- comes after FROM
 	- Boolean expression, such as =, !=, >, < etc.
-	- SELECT alias.column_name FROM table_name alias WHERE alias.name = 'value';
+	- SELECT alias.column_name FROM table_name alias WHERE alias.column_name = 'value';
 - database normalisation
-	- create table about one specific topic only
+	- create table about one specific topic only (nonstructured data -> structured data)
 	- benefits
 		- minimise duplicate data
 		- minimise/avoid data modification issues
 		- simplify queries
+		- i.e. reduce data redundancy and improve data integrity
+		- + reduce data complexity, ensure relationship between tables as well as data, 
+		ensure data dependecies and data are logically stored
 	- common forms 
-		- 1st, 2nd and 3rd normal form
-		- 1NF, 2NF and 3NF
+		- 1st (or 1NF)
+			- contains only automic values (i.e. one value per cell)
+			- each record is unique, no repeating groups (i.e. table doesn't contain 2 or more
+			values of columns that are closely related)
+		- 2nd (or 2NF)
+			- 1NF
+			- no partial dependency of any column on primary key
+			- all non-key attributes are fully functionally dependent on primary key
+		- 3rd (or 3NF)
+			- 2NF
+			- no transitive functional dependency, i.e. table 1 dependent on table 2 and table 2
+			dependent on table 3 is transitive dependence, which isn't allowed to occur
+			- benefits: data integrity, no data duplication
+		- Boyce-Codd (or BCNF or 3.5NF)
+			- used to handle anomalies which are not accounted for in 3NF
+			- all redundancy based on functional dependecy removed
 - SQL constraint types
-	- constraints = rules to apply on type of data in a table
+	- constraints = rules to restrict type of data in a table
 	- ensure accuracy and reliability of data in table
+	- can be set at column or table level
 	- constraint violation > action aborted
-	- CREATE TABLE table_name (col1 Type, col2 Type, col3 Type, CONSTRAINT contstraint_name constraint_type (col_that_it_applies_to));
+	- CREATE TABLE table_name (col1 Type, col2 Type, col3 Type, 
+	CONSTRAINT contstraint_name constraint_type (col_that_it_applies_to));
 	- CREATE TABLE customers (customer_id INTEGER, name VARCHAR(50), 
 	surname VARCHAR(50) NOT NULL, telephone INTEGER CONSTRAINT pk_customer_id PRIMARY KEY (customer_id));
-	- PRIMARY KEY = unique identifier per table, can be used to refer to other tables
+	- NOT NULL
+		- once applied, cannot pass a null value to the column
+		- cannot be defined at table level
+		- CREATE TABLE table_name (col1 INTEGER NOT NULL, col2 VARCHAR(50));
+	- UNIQUE
+		- column must only have unique values, i.e. duplicate values not allowed
+		- can be applied at column or table level
+		- CREATE TABLE table_name (col1 INTEGER NOT NULL UNIQUE, col2 VARCHAR(50));
+		- ALTER TABLE table_name ADD UNIQUE (col1);
+	- CHECK
+		- restrict value of a column between a range
+		- CREATE TABLE table_name (col1 INTEGER NOT NULL CHECK (col1 > 0), col2 VARCHAR(50));
+		- ALTER TABLE table_name ADD CHECK (col1 > 0);
+	- DEFAULT
+		- set default value for column
+		- CREATE TABLE table_name (col1 INTEGER NOT NULL UNIQUE, col2 VARCHAR(50) DEFAULT 'value');
+	- PRIMARY KEY
+		= unique identifier of row per table, can be used to refer to other tables
 		- cannot be null
 		- must be unique
-		- can be multiple columns - called compound key
+		- can be single or multiple columns (called compound key)
 		- can be defined in CREATE TABLE or ALTER TABLE statements as PRIMARY KEY
 		- CREATE TABLE table_name (col1 Type KEY DEFINITION, col2 Type, col3 Type);
 		- CREATE TABLE customers (customer_id INTEGER PRIMARY KEY, name VARCHAR(50), 
 		surname VARCHAR(50) NOT NULL, telephone INTEGER);
+		- CREATE TABLE table_name (col1 Type, col2 Type, CONSTRAINT pk_name PRIMARY KEY col1);
 	- FOREIGN KEY
-		- refers to a primary key in a different table
+		- relates two tables, refers to a column (often primary key) in a different table
+		- restricts actions that would destroy links between tables
+		- enforces referential integrity, reinforces relationships between tables (parent/referenced 
+		and child/referencing tables)
 		- can be non-unique
 		- allows null values
+		- called recursive/self-referencing foreign key if primary key and foreign key in same table
+		- to insert foreign key value into child table, that value must be present in parent table
+		- table can have more than one foreign key, and each can refer to a different parent table
+		- when record deleted in parent table 
+			- ON DELETE CASCADE - remove record from child table
+			- ON DELETE SET NULL - set record to NULL in child table
+			- otherwise not allowed to delete in parent table
+		- define ON DELETE and ON UPDATE actions
+			- CASCADE - push change from parent table to child table
+			- SET NULL - if value changed in parent table, set to NULL in child table
+			- RESTRICT - parent value cannot be edited, default
+		- CREATE TABLE table_name (col1 Type PRIMARY KEY, col2 Type, 
+		col3 Type FOREIGN KEY REFERENCES table_name2 (col2) ON UPDATE CASCADE ON DELETE CASCADE);
+		- ALTER TABLE table_name ADD CONSTRAINT constraint_name FOREIGN KEY (col_that_it_applies_to)
+		REFERENCES table_name2 (col2_that_it_applies_to);
+		- ALTER TABLE table_name DROP FOREIGN KEY constraint_name; to drop foreign key
+		- SET foreign_key_checks = 0; to disable foreign key checks
+		- SET foreign_key_check = 1; to enable foreign key checks
 - data integrity
 	- parent table with unique primary keys
 	- referential integrity - aggregate information across sources
@@ -142,25 +204,47 @@ Session 2 notes
 	- many to one
 - core commands DDL
 	- DDL = Data Definition Language
-	- SELECT
-	- INSERT
-	- UPDATE
-		- modify columns in a single 
-		- UPDATE table_name SET table_name.col1 = new_value WHERE table_name.col2 = value;
-	- DELETE
-		- delete one or more rows
-		- DELETE FROM table_name; to empty table permanently
-		- DELETE FROM table_name WHERE table_name.col = value;
+	- subset of SQL statements that change structure of db schema
+	- CREATE
 	- ALTER TABLE
 		- change an existing table, add/remove columns, change data type, change constraints
+		- must agree with current data
 		- ALTER TABLE table_name ADD CONSTRAINT constraint_name constraint_type (col_that_it_applies_to)
 		REFERENCES table_name2 (col2_that_it_applies_to);
 	- DROP TABLE
 		- removes table and all associated data
 		- error if table is a foreign key to another table
 		- DROP TABLE table_name;
+	- TRUNCATE
+	- COMMENT
+	- RENAME
+- DML commands
+	- DML = Data Manipulation Language
+	- SELECT
+	- INSERT
+	- UPDATE
+		- modify columns in a single 
+		- use SET and WHERE keywords
+		- UPDATE table_name SET table_name.col1 = new_value WHERE table_name.col2 = value;
+	- DELETE
+		- delete one or more rows permanently
+		- DELETE FROM table_name; to empty table permanently
+		- DELETE FROM table_name WHERE table_name.col = value;
+	- MERGE
+	- CALL
+	- EXPLAIN PLAN
+	- LOCK TABLE
+- DCL = Data Control Language
+	- GRANT
+	- REVOKE
+- TCL = Transaction Control Language
+	- COMMIT
+	- ROLLBACK
+	- SAVEPOINT
+	- SET TRANSACTION
+- SHOW CREATE TABLE table; to show table information
 - homework task 1
-	- review slides
+	- review slides - done
 	- write queries for parts db
 - homework task 2
 	- create shop db with tables
