@@ -211,6 +211,7 @@ Session 2 notes
 		- must agree with current data
 		- ALTER TABLE table_name ADD CONSTRAINT constraint_name constraint_type (col_that_it_applies_to)
 		REFERENCES table_name2 (col2_that_it_applies_to);
+		- ALTER TABLE table_name MODIFY COLUMN column Type;
 	- DROP TABLE
 		- removes table and all associated data
 		- error if table is a foreign key to another table
@@ -223,7 +224,7 @@ Session 2 notes
 	- SELECT
 	- INSERT
 	- UPDATE
-		- modify columns in a single 
+		- modify columns in a single table
 		- use SET and WHERE keywords
 		- UPDATE table_name SET table_name.col1 = new_value WHERE table_name.col2 = value;
 	- DELETE
@@ -245,11 +246,11 @@ Session 2 notes
 - SHOW CREATE TABLE table; to show table information
 - homework task 1
 	- review slides - done
-	- write queries for parts db
+	- write queries for parts db - done and submitted
 - homework task 2
-	- create shop db with tables
+	- create shop db with tables - done
 
-
+##############################################################################################################
 
 
 
