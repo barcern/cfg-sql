@@ -1,4 +1,4 @@
-Session 1 notes
+Session 1 notes - introduction
 - big data = structured or unstructured data difficult to process using standard techniques
 - capture > store > analyse
 - database = data storage
@@ -98,7 +98,7 @@ Session 1 notes
 	- create parts database - done
 	
 ##############################################################################################################
-Session 2 notes
+Session 2 notes - SQL and db management techniques
 - DISTINCT
 	- keyword requesting a unique set of results
 	- SELECT DISTINCT alias.column_name FROM table_name alias;
@@ -251,6 +251,41 @@ Session 2 notes
 	- create shop db with tables - done
 
 ##############################################################################################################
+Session 3 notes - data analysis
+- comparison operators
+	- relational opearators that compare values of operands
+	- returns True or FALSE
+	- <, >, <=, >=, =, != or <>
+- condition keywords
+	- AND, OR, IS NOT (only used for NULL)
+- example
+	- SELECT alias.column FROM table_name alias WHERE alias.column = condition
+	AND alias.column2 > condition OR alias.column IS NOT NULL;
+- logical operators
+	- searching for patterns or searching without exact search criteria
+	- BETWEEN, NOT BETWEEN - values within a range
+	- LIKE - character string matching a specified pattern using % to indicate
+	other characters
+		- wildcard % - zero, one or however many characters
+		- wildcard _ - only one single character
+		- LIKE '%m' - any string ending with 'm'
+		- LIKE 'm__%' - any string beginning with 'm' and at least three characters long
+		- LIKE 'm%t' - any string beginning with 'm' and ending with 't'
+	- IN - multiple values included in a WHERE clause
+	- IS - similar to equals, to be used when values may be NULL
+	- SELECT alias.column FROM table_name alias 
+	WHERE alias.column BETWEEN value1 AND value2;
+	- SELECT alias.column FROM table_name alias 
+	WHERE alias.column LIKE 'M%';
+	- SELECT alias.column FROM table_name alias 
+	WHERE alias.column IN (value1, value2, value3);
+- aggregation and order
+	- ORDER BY
+		- used with SELECT, comes after WHERE
+		- need to specify one or more columns to order by, must be present in SELECT clause as well
+		- ASC and DESC, ASC by default
+		- SELECT alias.column FROM table_name alias ORDER BY table_name.column;
+		
 
 
 
