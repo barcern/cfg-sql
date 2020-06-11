@@ -254,11 +254,10 @@ Session 2 notes - SQL and db management techniques
 Session 3 notes - data analysis
 - comparison operators
 	- relational opearators that compare values of operands
-	- returns True or FALSE
+	- returns True or False
 	- <, >, <=, >=, =, != or <>
 - condition keywords
 	- AND, OR, IS NOT (only used for NULL)
-- example
 	- SELECT alias.column FROM table_name alias WHERE alias.column = condition
 	AND alias.column2 > condition OR alias.column IS NOT NULL;
 - logical operators
@@ -280,12 +279,44 @@ Session 3 notes - data analysis
 	- SELECT alias.column FROM table_name alias 
 	WHERE alias.column IN (value1, value2, value3);
 - aggregation and order
+	- organise, understand, interpret and analyse data
 	- ORDER BY
 		- used with SELECT, comes after WHERE
 		- need to specify one or more columns to order by, must be present in SELECT clause as well
 		- ASC and DESC, ASC by default
 		- SELECT alias.column FROM table_name alias ORDER BY table_name.column;
-		
+	- set functions
+		- 'helper' functions, used in place of columns in SELECT clause
+		- compute a new value from passed columns
+		- often use DISTINCT 
+		- COUNT - count all column values specified, includes NULL values if * used
+		- MAX - excludes NULL
+		- MIN - excludes NULL
+		- SUM - excludes NULL
+		- AVG - average of all values in column, excludes NULL
+		- LISTAG - transforms values from a group of rows into a delimited string
+		- and many others, incl. trig and log functions such as sin, cos, tan, asin,
+		sinh, cosh, tanh, log(base, value), ln(value)
+		- SELECT SUM(alias.column) FROM table_name alias;
+		- SELECT COUNT(DISTINCT alias.column) FROM table_name alias;
+	- GROUP BY
+		- groups rows that have same values
+		- allows multiple columns with a set function - breaks results into subsets,
+		runs set function against each subset, returns 1 row of results per subset
+		- summarises data
+		- columns specified in GROUP BY must appear in SELECT clause
+		- SELECT COUNT(alias.column), alias.column FROM table_name alias 
+		GROUP BY alias.column;
+	- HAVING
+		- WHERE cannot be used with aggregate functions -> HAVING added
+		- filters records that work on summarised GROUP BY results
+		- WHERE and HAVING can be used in same query
+		- SELECT COUNT(DISTINCT alias.column) alias.column FROM table_name alias
+		GROUP BY alias.column HAVING COUNT(DISTINCT alias.column) > value;
+	- GROUP BY aggregates data and creates subsets, HAVING restricts GROUP BY
+- homework
+	- review notes - done
+	- finish shop queries
 
 
 
