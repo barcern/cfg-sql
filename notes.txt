@@ -316,7 +316,7 @@ Session 3 notes - data analysis
 	- GROUP BY aggregates data and creates subsets, HAVING restricts GROUP BY
 - homework
 	- review notes - done
-	- finish shop queries
+	- finish shop queries - done
 
 
 

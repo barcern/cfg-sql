@@ -33,26 +33,6 @@ SELECT SUM(salesamount) 'total sales',
        salesperson 
 FROM sales1 GROUP BY salesperson;
 
-# Find out how many sales took place each week (in no particular order)
-
-# Find out how many sales took place each week (and present data by week in descending
-# and then in ascending order)
-
-# Find out how many sales were recorded each week on different days of the week
-
-# We need to change salesperson's name Inga to Annette
-
-# Find out how many sales did Annete do
-
-
-# How much ( each person sold for the given period
-
-
-
-# Find the total monetary sales amount achieved by each store
-
 # Find the number of sales by each person if they did less than 3 sales for the past period
 SELECT COUNT(salesamount), salesperson FROM sales1 
 GROUP BY salesperson HAVING (COUNT(salesamount) <3);
-
-# Find the total amount of sales by month where combined total is less than 100
