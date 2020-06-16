@@ -17,6 +17,7 @@ SELECT week, COUNT(week) 'number of sales' FROM sales1 GROUP BY week ORDER BY we
 
 # Find out how many sales were recorded each week on different days of the week
 SELECT day, COUNT(day) FROM sales1 GROUP BY day;
+SELECT week, day, COUNT(*) FROM sales1 GROUP BY week, day ORDER BY week;
 
 # We need to change salesperson's name Inga to Annette
 UPDATE sales1 SET sales1.salesperson = 'annette' WHERE sales1.salesperson = 'inga';
@@ -25,7 +26,8 @@ UPDATE sales1 SET sales1.salesperson = 'annette' WHERE sales1.salesperson = 'ing
 SELECT salesperson, COUNT(salesperson) 'number of sales' FROM sales1 WHERE salesperson = 'annette';
 
 # Find the total sales amount by each person by day
-SELECT salesperson, day, SUM(salesamount) FROM sales1 GROUP BY salesperson, day ORDER BY salesperson;
+SELECT salesperson, day, SUM(salesamount) FROM sales1 
+GROUP BY salesperson, day ORDER BY salesperson;
 
 # How much (sum) each person sold for the given period
 SELECT salesperson, SUM(salesamount) 'total sales' FROM sales1 GROUP BY salesperson ORDER BY salesperson;

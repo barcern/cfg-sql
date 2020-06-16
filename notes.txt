@@ -289,7 +289,8 @@ Session 3 notes - data analysis
 		- 'helper' functions, used in place of columns in SELECT clause
 		- compute a new value from passed columns
 		- often use DISTINCT 
-		- COUNT - count all column values specified, includes NULL values if * used
+		- COUNT - count all column values specified, includes NULL values if * used,
+		* used to count all rows which fit into groups
 		- MAX - excludes NULL
 		- MIN - excludes NULL
 		- SUM - excludes NULL
@@ -318,7 +319,67 @@ Session 3 notes - data analysis
 	- review notes - done
 	- finish shop queries - done
 
-
+##############################################################################################################
+Session 4 - data analysis for complex structures
+- JOIN
+	- combines columns from two or more tables, based on a related column between them
+	into a single result set
+	- can only join columns of same data type
+	- INNER JOIN
+		- returns rows when there is at least one match in both tables
+		- only returns rows in common between tables
+		- doesn't accept NULL values
+		- SELECT alias1.column, alias2.column FROM table1 alias1 INNER JOIN table2 alias2
+		ON alias1.column = alias2.column;
+	- LEFT OUTER JOIN or LEFT JOIN
+		- all rows from the left side with the matching rows from right side returned
+		- gives NULL if no values matching in right table
+		- SELECT alias1.column, alias1.column, alias2.column FROM table1 alias1 
+		LEFT JOIN table2 alias2 ON alias1.column = alias2.column;
+	- RIGHT OUTER JOIN or RIGHT JOIN
+		- all rows from the right table with the matching rows from left side returned
+		- gives NULL if no values matching in left table
+		- SELECT alias1.column, alias1.column, alias2.column FROM table1 alias1 
+		RIGHT JOIN table2 alias2 ON alias1.column = alias2.column;
+	- FULL OUTER JOIN or FULL JOIN
+		- returns rows from either table when conditions are met
+		- returns NULL if no values match
+		- equivalent to LEFT JOIN and RIGHT JOIN
+		- doesn't work in MySQL
+	- CROSS JOIN
+		- matches all rows to all rows - returns cartesian product
+		- SELECT alias1.column, alias1.column, alias2.column FROM table1 alias1 
+		RIGHT JOIN table2 alias2 ON alias1.column = alias2.column;
+	- self join
+		- uses same table with different aliases to join a table to itself
+		- no special syntax, can use RIGHT JOIN
+	- EQUI JOIN and NON-EQUI JOIN
+		- uses / doesn't use equal sign as comparison
+	- NAURAL JOIN
+		- all columns in two tables with same name
+	- KEYWORD JOIN
+		- uses keyword for joining tables when columns have same name in both tables
+- UNION
+	- combines two or more result sets of queries into a single result set
+	- tables get longer, not wider
+	- stacks tables on top of each other (doesn't create longer rows)
+	- tables must have same columns in same order, doesn't match on a specific column
+	- by default doesn't duplicate rows
+	- UNION ALL to retain duplicate rows
+- subquery
+	- nested query where reults of one query used in another query using a relational
+	operator or aggregation function
+	- must be in parantheses
+	- can only have one column in SELECT clause if used in WHERE clause
+	- ORDER BY clause not allowed in subquery
+	- can be nested
+	- used in WHERE, HAVING, FROM and SELECT
+- homework
+	- review notes
+	- parts queries
+	
+	
+	
 
 
 
