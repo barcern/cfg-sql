@@ -329,8 +329,8 @@ Session 4 - data analysis for complex structures
 		- returns rows when there is at least one match in both tables
 		- only returns rows in common between tables
 		- doesn't accept NULL values
-		- SELECT alias1.column, alias2.column FROM table1 alias1 INNER JOIN table2 alias2
-		ON alias1.column = alias2.column;
+		- SELECT alias1.column, alias2.column FROM table1 alias1 
+		INNER JOIN table2 alias2 ON alias1.column = alias2.column;
 	- LEFT OUTER JOIN or LEFT JOIN
 		- all rows from the left side with the matching rows from right side returned
 		- gives NULL if no values matching in right table
@@ -349,13 +349,13 @@ Session 4 - data analysis for complex structures
 	- CROSS JOIN
 		- matches all rows to all rows - returns cartesian product
 		- SELECT alias1.column, alias1.column, alias2.column FROM table1 alias1 
-		RIGHT JOIN table2 alias2 ON alias1.column = alias2.column;
+		CROSS JOIN table2 alias2 ON alias1.column = alias2.column;
 	- self join
 		- uses same table with different aliases to join a table to itself
 		- no special syntax, can use RIGHT JOIN
 	- EQUI JOIN and NON-EQUI JOIN
 		- uses / doesn't use equal sign as comparison
-	- NAURAL JOIN
+	- NATURAL JOIN
 		- all columns in two tables with same name
 	- KEYWORD JOIN
 		- uses keyword for joining tables when columns have same name in both tables
@@ -364,18 +364,18 @@ Session 4 - data analysis for complex structures
 	- tables get longer, not wider
 	- stacks tables on top of each other (doesn't create longer rows)
 	- tables must have same columns in same order, doesn't match on a specific column
-	- by default doesn't duplicate rows
+	- by default excludes duplicate rows (only includes it once)
 	- UNION ALL to retain duplicate rows
 - subquery
-	- nested query where reults of one query used in another query using a relational
+	- nested query where results of one query used in another query using a relational
 	operator or aggregation function
-	- must be in parantheses
+	- must be in parentheses
 	- can only have one column in SELECT clause if used in WHERE clause
 	- ORDER BY clause not allowed in subquery
-	- can be nested
+	- can be nested within other subqueries
 	- used in WHERE, HAVING, FROM and SELECT
 - homework
-	- review notes
+	- review notes - done
 	- parts queries
 	
 	
