@@ -325,6 +325,7 @@ Session 4 - data analysis for complex structures
 	- combines columns from two or more tables, based on a related column between them
 	into a single result set
 	- can only join columns of same data type
+	- can do multiple JOIN statements in one query
 	- INNER JOIN
 		- returns rows when there is at least one match in both tables
 		- only returns rows in common between tables
@@ -376,7 +377,7 @@ Session 4 - data analysis for complex structures
 	- used in WHERE, HAVING, FROM and SELECT
 - homework
 	- review notes - done
-	- parts queries
+	- parts queries - done
 	
 	
 	
