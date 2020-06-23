@@ -375,12 +375,62 @@ Session 4 - data analysis for complex structures
 	- ORDER BY clause not allowed in subquery
 	- can be nested within other subqueries
 	- used in WHERE, HAVING, FROM and SELECT
+	- much quicker than joins
 - homework
 	- review notes - done
 	- parts queries - done
 	
-	
-	
+##############################################################################################################
+Session 5 - data manipulation with SQL	
+- functions
+	- built-in and user-defined
+	- piece of code performs operations and returns a result
+	- string functions
+	- numeric functions
+	- date functions
+	- when used with SELECT statement, data not changed
+	- used with UPDATE statement to update data using a function
+	- built-in examples:
+		- length()
+		- upper()
+		- lower()
+		- concat()
+		- date_format()
+		- cast()
+		- trim()
+		- reverse()
+		- now()
+		- power()
+- transactions
+	- manilupating data and retaining changes
+	- unit of work that is performed against a database in a logical way
+	- after a transaction
+		- commit
+		- roll back
+	- MySQL automatically commits
+	- START TRANSACTION;
+	run code
+	COMMIT;
+	- cannot rollback after you commit
+- variables
+	- SET @variablename = value
+- CFG project
+	- create a db with relationships
+	- normalised table
+- table locking
+	- prevent other users from being able to use it
+	- READ LOCK 
+		- can read but cannot write
+		- automatically terminated when session ends
+	- LOCK TABLE table_name READ;
+	queries
+	UNLOCK TABLES;
+	- WRITE LOCK
+		- can write but cannot read, table not visible to other users
+	- LOCK TABLE table_name WRITE;
+	- https://www.mysqltutorial.org/mysql-table-locking/
+- homework
+	- project idea, summary, name + coworker
 
 
 
