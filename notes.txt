@@ -405,7 +405,9 @@ Session 5 - data manipulation with SQL
 	- after a transaction
 		- commit > apply change to db
 		- roll back > do not retain change
+	- only complete if each part of operation fully successful
 	- prevents partial operations from being committed to db
+	- maintain referential data integrity, minimise data errors
 	- MySQL automatically commits (SET autocommit to ON or OFF)
 	- START TRANSACTION; / BEGIN; / BEGIN WORK;
 	run code
@@ -417,23 +419,34 @@ Session 5 - data manipulation with SQL
 - variables
 	- SET @variablename = value
 - table locking
-	- prevent other users from being able to use it
-	- READ LOCK 
+	- prevent other users from being able to editing/viewing a table
+	- ensure data integrity
+	- read lock 
 		- can read but cannot write
 		- automatically terminated when session ends
+		- write operations from other sessions queued until lock released
+		- can be held by mutliple sessions - e.g. a team
+		- shared lock
 	- LOCK TABLE table_name READ;
-	queries
-	UNLOCK TABLES;
-	- WRITE LOCK
-		- can write but cannot read, table not visible to other users
+	update
+	UNLOCK TABLE;
+	- write lock
+		- table not visible to other users
+		- can only be held by one session
+		- exclusive lock
 	- LOCK TABLE table_name WRITE;
+	update
+	UNLOCK TABLE;
+	- LOCK TABLES table1 READ, table2 WRITE;
+	update
+	UNLOCK TABLES;
 	- https://www.mysqltutorial.org/mysql-table-locking/
 - CFG project
 	- create a db with relationships
 	- normalised table
 - homework
 	- review slides - done
-	- run through self-study
+	- run through self-study - done
 	- project idea, summary, name + coworker - done
 
 
