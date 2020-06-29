@@ -385,9 +385,7 @@ Session 5 - data manipulation with SQL
 - functions
 	- built-in and user-defined
 	- piece of code performs operations and returns a result
-	- string functions
-	- numeric functions
-	- date functions
+	- most common types: string functions, numeric functions, date functions
 	- when used with SELECT statement, data not changed
 	- used with UPDATE statement to update data using a function
 	- built-in examples:
@@ -405,18 +403,19 @@ Session 5 - data manipulation with SQL
 	- manilupating data and retaining changes
 	- unit of work that is performed against a database in a logical way
 	- after a transaction
-		- commit
-		- roll back
-	- MySQL automatically commits
-	- START TRANSACTION;
+		- commit > apply change to db
+		- roll back > do not retain change
+	- prevents partial operations from being committed to db
+	- MySQL automatically commits (SET autocommit to ON or OFF)
+	- START TRANSACTION; / BEGIN; / BEGIN WORK;
 	run code
-	COMMIT;
+	COMMIT; / ROLLBACK;
 	- cannot rollback after you commit
+- using IF statements
+	- IF(condition, variable i.e. column, what to display if condition not fulfiled)
+	- IF(balance > 0, balance, 0)
 - variables
 	- SET @variablename = value
-- CFG project
-	- create a db with relationships
-	- normalised table
 - table locking
 	- prevent other users from being able to use it
 	- READ LOCK 
@@ -429,8 +428,13 @@ Session 5 - data manipulation with SQL
 		- can write but cannot read, table not visible to other users
 	- LOCK TABLE table_name WRITE;
 	- https://www.mysqltutorial.org/mysql-table-locking/
+- CFG project
+	- create a db with relationships
+	- normalised table
 - homework
-	- project idea, summary, name + coworker
+	- review slides - done
+	- run through self-study
+	- project idea, summary, name + coworker - done
 
 
 

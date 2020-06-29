@@ -1,0 +1,12 @@
+Project name:
+Bracknell Bees Progress Tracker
+
+Project idea:
+database to keep track of stats relating to my local ice hockey team (Bracknell Bees)
+
+Summary:
+this database will hold multiple tables, describing metrics about the players
+themselves, keeping stats about each game played this season, top scoring players,
+players of the match, and (only if I have lots of free time) some prediction 
+mechanism on winning based on previous results with each team
+

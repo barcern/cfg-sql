@@ -1,3 +1,4 @@
+# Create infrastructure to demo transactions
 CREATE DATABASE bank;
 USE bank;
 CREATE TABLE accounts 
@@ -18,40 +19,49 @@ VALUES
 
 SELECT * FROM accounts;
 
-# @moneyAvailable probably not needed
+# Display people with balance > 0 and surname = Smith
+# Note that @moneyAvailable variable probably not needed here
 SELECT @moneyAvailable:=IF(balance > 0, balance, 0) as money
 FROM accounts
 WHERE account_holder_surname = 'Smith';
 
+# Simplified version for all entries in table
 SELECT IF(balance > 20, balance, 0) as money
 FROM accounts;
 
+# Simplified version without @moneyAvailable
 SELECT IF(balance > 0, balance, 0) as money
 FROM accounts
 WHERE account_holder_surname = 'Smith';
 
+# Begin transaction
 START TRANSACTION;
+
+# Find all people eligible for a transaction, i.e. balance > 0
 SELECT IF(balance > 0, balance, 0) as money
 FROM accounts;
 
-# Create a variable
+# Create a variable to contain the transfer amount
 SET @transferamount = 50;
 
+# Run the transfer by updating a person's balance
 UPDATE accounts
 SET balance = balance - @transferamount
 WHERE account_holder_surname = 'Smith';
 
+# Check table
 SELECT * FROM accounts;
 
+# Roll back to not retain this change
 ROLLBACK;
 
+# Check table
 SELECT * FROM accounts;
 
-
+# Change a person's name
 UPDATE accounts
 SET account_holder_name = 'Margaret'
 WHERE account_holder_surname = 'Smith';
 
+# Commit the change
 COMMIT;
-
-ROLLBACK;
