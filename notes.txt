@@ -449,7 +449,66 @@ Session 5 - data manipulation with SQL
 	- run through self-study - done
 	- project idea, summary, name + coworker - done
 
-
+##############################################################################################################
+Session 6 - data management using SQL coding techniques
+- views
+	- virtual table based on result of SQL statement
+	- do not store data, virtual snapshot of representation of a table
+	- view info without directly accessing db > user cannot modify db
+	- based off base tables
+	- can have nested views
+	- allow for GDPR and security restrictions by using WHERE clauses
+	- CREATE VIEW view_name AS SELECT query...
+	- restrictions
+		- not updateable (except for very simple queries)
+	- withcheck option
+		- prevent modifying a row in such a way that it would no longer be part
+		of the view result
+		- ensure consistency of data
+	- doesn't store any data, just query definition
+- stored procedures
+	- subroutine available to applications that access a rdbs
+	- one or more SQL statements
+	- called sproc or procedures
+	- can pass parameters
+	- advantages
+		- can be reused
+	- DELIMITER// 
+	CREATE PROCEDURE proc_name
+	BEGIN
+	DECLARE variable; proc_logic
+	END//
+	DELIMITER;
+	CALL proc_name;
+	- set delimiter since ; may need to be used within the procedure definition
+	- can have multiple begin/end statements
+	- output can be a table
+- stored functions
+	- executable db object with SQL procedural code
+	- also called user defined functions
+	- DELIMITER// 
+	CREATE FUNCTION func_name (param TYPE)
+	RETURNS TYPE
+	BEGIN
+	DECLARE variable; func_logic
+	RETURN(result)
+	END//
+	DELIMITER;
+	CALL proc_name;
+- comparison
+	- procedure: returns many values, input and output parameters, can't be used in
+	SELECT, can call functions, may not return value, read and modify data, 
+	INSERT/SELECT/UPDATE/DELETE, transaction management
+	- function: returns one value, input parameters only, can be used in
+	SELECT, cannot call procedures, must return value, read data only, 
+	SELECT only, no transaction management
+- AUTO_INCREMENT PRIMARY KEY
+- homework
+	- review slides
+	- write function, procedure, trigger and event
+	- link back to project
+	- download and install tableau (free version)
+	
 
 
 
