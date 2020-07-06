@@ -507,7 +507,7 @@ Session 6 - data management using SQL coding techniques
 	- review slides
 	- write function, procedure, trigger and event
 	- link back to project
-	- download and install tableau (free version)
+	- download and install tableau (free version) - done
 	
 
 
