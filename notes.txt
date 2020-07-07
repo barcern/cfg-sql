@@ -560,13 +560,61 @@ Session 6 - data management using SQL coding techniques
 		- one time
 		- recurring
 	- maintenance tasks
+	- to show existing events:
+	SHOW PROCESSLIST;
+	SHOW EVENTS FROM db;
+	- to create an event:
+	CREATE EVENT [IF NOT EXISTS] event_name
+	ON SCHEDULE schedule
+	ON COMPLETION PRESERVE
+	DO
+		body of event e.g. INSERT INTO ...;
+	- ON COMPLETION PRESERVE retains the event
+	- can use relative schedules, e.g. CURRENT_TIMESTAMP + INTERVAL 1 MINUTE
+	- example recurring schedule:
+	ON SCHEDULE EVERY 1 MINUTE
+	STARTS CURRENT_TIMESTAMP
+	ENDS CURRENT_TIMESTAMP + INTERVAL 1 HOUR
+	- to drop an event:
+	DROP EVENT event_name
 - homework
-	- review slides
+	- review slides - done
 	- write function, procedure, trigger and event
 	- link back to project
 	- download and install tableau public (free version) - done
 	
-
+##############################################################################################################
+Session 7 - db design and data visualisation
+- mysqldump and mysql commands
+	- back up one or multiple dbs or a table
+	- can back up logic, not just tables
+	- use cmd to backup
+		- find mysqldump file - located in 
+		Program Files/MySQL/MySQL Server 8.0/bin
+		- dir to view all files in a folder
+		- using localhost and root user:
+		mysqldump options > folder
+		e.g.
+		mysqldump -h 127.0.0.1 -u root -p bakery > C:\bakery\bakerybackup.sql
+	- db restore
+		- always test
+		- to restore:
+		mysql options < folder
+		e.g.
+		mysql -h 127.0.0.1 -u root -p bakery < C:\bakery\bakerybackup.sql
+- entity relationship diagram
+	- workbench - reverse engineering to display the diagram
+	- workbench > db > reverse engineer
+- can import data from csv
+- can export results into csv
+- homework
+	- review slides
+	- project
+		- include min 5 tables, ER diagram
+		- primary and foreign keys
+		- joins, stored function, query with subquery
+		- 3 out of: stored procedure, trigger, event, view with 3-4 base
+		tables plus query, group by and having
 
 
 

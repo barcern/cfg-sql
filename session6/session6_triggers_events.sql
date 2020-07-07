@@ -43,4 +43,44 @@ SET lastname = 'efron'
 WHERE employeeID = 3;
 
 
+# Show existing events
+SHOW PROCESSLIST;
 
+# Create a new simple table
+CREATE TABLE messages (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    message VARCHAR(255) NOT NULL,
+    created_at DATETIME NOT NULL
+);
+
+# Create an event to add a new row with today's date
+# This event expires as soon as it is complete
+SELECT * FROM messages;
+CREATE EVENT IF NOT EXISTS event_add_row
+ON SCHEDULE AT current_timestamp()
+DO
+	INSERT INTO messages (message, created_at)
+    VALUES ('test event', now());
+    
+# Show all events in db
+SHOW EVENTS FROM practice;
+
+# Create another one-time event
+CREATE EVENT test_event_02
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 MINUTE
+ON COMPLETION PRESERVE
+DO
+   INSERT INTO messages(message,created_at)
+   VALUES('Test MySQL Event 2',NOW());
+   
+# Create a recurring event
+CREATE EVENT test_event_03
+ON SCHEDULE EVERY 1 MINUTE
+STARTS CURRENT_TIMESTAMP
+ENDS CURRENT_TIMESTAMP + INTERVAL 1 HOUR
+DO
+   INSERT INTO messages(message,created_at)
+   VALUES('Test MySQL recurring Event',NOW());
+   
+# Drop event
+DROP EVENT test_event_03;
