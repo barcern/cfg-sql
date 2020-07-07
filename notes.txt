@@ -454,48 +454,67 @@ Session 6 - data management using SQL coding techniques
 - views
 	- virtual table based on result of SQL statement
 	- do not store data, virtual snapshot of representation of a table
-	- view info without directly accessing db > user cannot modify db
+	- view info without directly accessing db > cannot access other info in db
 	- based off base tables
 	- can have nested views
 	- allow for GDPR and security restrictions by using WHERE clauses
 	- CREATE VIEW view_name AS SELECT query...
-	- restrictions
-		- not updateable (except for very simple queries)
-	- withcheck option
-		- prevent modifying a row in such a way that it would no longer be part
-		of the view result
+	- updates
+		- updatable for simple queries > can update data not visible through view >
+		view inconsistent
+		- not updatable for complex queries
+	- with check option
+		- prevent modifying/inserting a row in such a way that it would no longer 
+		be part of the view result
 		- ensure consistency of data
 	- doesn't store any data, just query definition
+- 4 types of stored programs
+	- stored procedure
+	- stored function
+	- trigger
+	- event
 - stored procedures
 	- subroutine available to applications that access a rdbs
 	- one or more SQL statements
+	- used for data validation and access control methods
 	- called sproc or procedures
-	- can pass parameters
+	- can pass multiple parameters
 	- advantages
 		- can be reused
-	- DELIMITER// 
-	CREATE PROCEDURE proc_name
+		- decrease in network traffic
+		- encapsulation of business logic
+		- delegation of access rights
+		- protection from SQL injection
+		- transaction management
+		- improved performance
+	- DELIMITER // 
+	CREATE PROCEDURE proc_name (input_parameters TYPE)
 	BEGIN
-	DECLARE variable; proc_logic
-	END//
-	DELIMITER;
-	CALL proc_name;
+		DECLARE variable;
+		proc_logic
+	END //
+	DELIMITER ;
+	CALL proc_name(input_parameters);
 	- set delimiter since ; may need to be used within the procedure definition
 	- can have multiple begin/end statements
 	- output can be a table
 - stored functions
 	- executable db object with SQL procedural code
 	- also called user defined functions
-	- DELIMITER// 
+	- cannot modify db by INSERT, UPDATE or DELETE statements
+	- MySQL > scalar functions only > single value returned
+	- can be used in SELECT statements
+	- DELIMITER // 
 	CREATE FUNCTION func_name (param TYPE)
 	RETURNS TYPE
 	BEGIN
-	DECLARE variable; func_logic
-	RETURN(result)
-	END//
-	DELIMITER;
-	CALL proc_name;
-- comparison
+		DECLARE variable;
+		func_logic
+		RETURN(result)
+	END //
+	DELIMITER ;
+	CALL func_name(input_parameters);
+- comparison between procedures and functions
 	- procedure: returns many values, input and output parameters, can't be used in
 	SELECT, can call functions, may not return value, read and modify data, 
 	INSERT/SELECT/UPDATE/DELETE, transaction management
@@ -503,11 +522,49 @@ Session 6 - data management using SQL coding techniques
 	SELECT, cannot call procedures, must return value, read data only, 
 	SELECT only, no transaction management
 - AUTO_INCREMENT PRIMARY KEY
+	- to automatically increate value of primary key by one when adding in rows
+- triggers
+	- blocks of code executed automatically when DML operations are executed
+	(e.g. INSERT, UPDATE, DELETE)
+	- trigger execution called trigger firing
+	- format
+		- FOR EACH ROW clause for a row-level trigger
+		- OLD keyword gets a value from row that is being updated/deleted
+		- NEW keyword gets a value from row that is being inserted/updated
+		- note: NEW for INSERT and UPDATE and OLD for UPDATE and DELETE
+	- enforce rules for data consistency and integrity
+	- maintain the audit table
+	- 2 types
+		- before trigger
+		- after trigger
+	- when updating the same table trigger is based on:
+	CREATE TRIGGER trigger_name
+	BEFORE/AFTER INSERT/UPDATE/DELETE
+	ON table_name 
+	FOR EACH ROW
+	trigger body e.g. SET NEW.updated = curdate();
+	- when updating a different table, include UPDATE statement:
+	CREATE TRIGGER trigger_name
+	BEFORE/AFTER INSERT/UPDATE/DELETE
+	ON table_name 
+	FOR EACH ROW
+	UPDATE table_name2
+	trigger body e.g. SET NEW.updated = curdate();
+	- include UPDATE table_name2 statement only if updating a different table
+	- can use BEGIN END without triggers to include multiple statements
+	- remember to use NEW/OLD keywords
+- events
+	- blocks of code executed automatically according to event scheduler
+	- event execution called event firing
+	- 2 types
+		- one time
+		- recurring
+	- maintenance tasks
 - homework
 	- review slides
 	- write function, procedure, trigger and event
 	- link back to project
-	- download and install tableau (free version) - done
+	- download and install tableau public (free version) - done
 	
 
 

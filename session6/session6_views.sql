@@ -61,7 +61,7 @@ INSERT INTO vw_staff_check (employeeID, firstname, lastname, job_title, managerI
 VALUES
 (7, 'robert', 'newman', 'data engineer', 6);
 
-# Create a new view with withcheck option
+# Create a new view with check option
 CREATE OR REPLACE VIEW vw_staff_check_filter AS
 SELECT employeeID, firstname, lastname, job_title, managerID
 FROM staff
