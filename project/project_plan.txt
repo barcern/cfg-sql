@@ -12,8 +12,10 @@ summary:
 
 tables:
 	- player: player_id, name, nationality, position
-	- game: game_id, away/home, win/loss, man of match, end type (ft, etc.)
+	- game: game_id, away/home, win/loss, man of match, end type (ft, etc.), shots sent, shots received
 	- penalty: penalty_id, game_id, type, length, player_id - what do I do about other team's penalties?
-	- scoring: score_id, game_id, player_id
+	- scoring: score_id, game_id, player_id, time, period
+	- goalinfo: player_id, game_id, time, goals
+	- standings: game_id, points scored, number in league
 
 import data as csv
