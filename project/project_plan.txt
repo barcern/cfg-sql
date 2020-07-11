@@ -23,3 +23,4 @@ import data as csv
 
 ideas:
 	- view for standings
+	- procedure to calculate standings
