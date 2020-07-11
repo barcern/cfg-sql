@@ -11,11 +11,15 @@ summary:
 	mechanism on winning based on previous results with each team
 
 tables:
-	- player: player_id, name, nationality, position
+	- team: team_id, team name, location - data done
+	- player: team, player_id, name, nationality, position etc. - data done
 	- game: game_id, away/home, win/loss, man of match, end type (ft, etc.), shots sent, shots received
 	- penalty: penalty_id, game_id, type, length, player_id - what do I do about other team's penalties?
 	- scoring: score_id, game_id, player_id, time, period
-	- goalinfo: player_id, game_id, time, goals
-	- standings: game_id, points scored, number in league
+	- netminders: player_id, game_id, time, goals
+	- standing: game_id, points scored, number in league, team1, team2, team who scored, date
 
 import data as csv
+
+ideas:
+	- view for standings

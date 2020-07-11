@@ -1,0 +1,3 @@
+game_id,date,fk_team1,fk_team2,team1_shots,team2_shots,team1_goals,team2_goals,away_home,man_of_match
+g1,21/09/2019,t2,t6,26,20,5,4,,
+g2,22/09/2019,t2,t6,23,38,0,3,,
