@@ -171,13 +171,13 @@ SELECT * FROM penalties;
 # Using joins to combine tables
 SELECT 
 	COUNT(g.goal_id) total_goals, 
-    (COUNT(g.goal_id))/p.games_played total_goals_per_games, 
-    g.fk_goal_player, 
+    (COUNT(g.goal_id))/p.games_played total_goals_per_games,
     p.games_played, 
     p.player_name 
 FROM goals g
 INNER JOIN players p ON g.fk_goal_player = p.player_id
-GROUP BY g.fk_goal_player ORDER BY total_goals_per_games DESC;
+GROUP BY g.fk_goal_player 
+ORDER BY total_goals_per_games DESC;
 
 
 # wrong
@@ -236,19 +236,46 @@ SELECT * FROM goals;
 SELECT * FROM players;
 SELECT * FROM penalties;
 
-SELECT p.player_name, pen.fk_penalty_player, SUM(pen.length) total_penalty_length
+# Defence players with total penalty length so far, order from highest to lowest
+SELECT p.player_name, SUM(pen.length) total_penalty_length
 FROM penalties pen
 INNER JOIN players p ON pen.fk_penalty_player = p.player_id
 WHERE (fk_penalty_player in (SELECT player_id FROM players WHERE player_position = 'd'))
-GROUP BY fk_penalty_player
+GROUP BY pen.fk_penalty_player
 ORDER BY SUM(pen.length) DESC;
 
-SELECT p.player_name, pen.fk_penalty_player, SUM(pen.length) total_penalty_length
+SELECT 
+	p.player_position, 
+	SUM(pen.length) total_penalty_length,
+    COUNT(p.player_position) 
 FROM penalties pen
 INNER JOIN players p ON pen.fk_penalty_player = p.player_id
-WHERE (fk_penalty_player in (SELECT player_id FROM players WHERE player_position = 'd'))
-GROUP BY fk_penalty_player
+GROUP BY p.player_position
 ORDER BY SUM(pen.length) DESC;
+
+
+SELECT * FROM penalties;
+
+CREATE OR REPLACE VIEW vw_penalties AS
+SELECT DISTINCT p.player_id, p.player_position, COUNT(*)
+FROM players p
+INNER JOIN penalties pen ON p.player_id = pen.fk_penalty_player
+GROUP BY p.player_position;
+
+SELECT * FROM vw_penalties;
+
+SELECT 
+	DISTINCT p.player_position, 
+	#SUM(penalties.length) total_penalty_length,
+    COUNT(p.player_position)#,
+    #(SELECT SUM(length) FROM penalties WHERE fk_penalty_player = 'p5')
+FROM players p
+LEFT JOIN penalties pen ON pen.fk_penalty_player = p.player_id
+GROUP BY p.player_position
+#ORDER BY SUM(pen.length) DESC
+;
+
+SELECT * FROM players WHERE player_position = 'c';
 
 SELECT fk_penalty_player, SUM(length)
 FROM penalties
@@ -379,7 +406,7 @@ WHERE player_id = 'p1';
 
 
 # Group by and having
-
+# 
 SELECT 
 	p.player_name,
     p.age,
