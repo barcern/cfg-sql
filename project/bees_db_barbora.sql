@@ -1,6 +1,19 @@
 CREATE DATABASE bees;
 
+DROP DATABASE bees;
+
 USE bees;
+#USE bees_restored;
+
+
+# Tables
+SELECT * FROM teams;
+SELECT * FROM goals;
+SELECT * FROM players;
+SELECT * FROM goals;
+SELECT * FROM penalties;
+SELECT * FROM standings;
+
 
 # Line below may help with importing problems
 #SET sql_mode = "";
@@ -75,16 +88,20 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
-(player_id, fk_team_player, nationality, player_name, @games_played, 
-@left_right, @date_of_birth, @age, @player_position, @height, @weight, player_number1, player_number2)
+(player_id, fk_team_player, @nationality, @player_name, @games_played, 
+@left_right, @date_of_birth, @age, @player_position, @height, @weight, @player_number1, @player_number2)
 SET 
+nationality = NULLIF(@nationality,''),
+player_name = NULLIF(@player_name,''),
 games_played = NULLIF(@games_played,''),
 left_right = NULLIF(@left_right,''),
 date_of_birth = NULLIF(@date_of_birth,''),
 age = NULLIF(@age,''),
 player_position = NULLIF(@player_position,''),
 height = NULLIF(@height,''),
-weight = NULLIF(@weight,'');
+weight = NULLIF(@weight,''),
+player_number1 = NULLIF(@player_number1,''),
+player_number2 = NULLIF(@player_number2,'');
 
 SELECT * FROM players;
 
@@ -331,6 +348,7 @@ DO
     
 # Testing
 SHOW EVENTS FROM bees;
+DROP EVENT event_calculate_age;
 
 # Set to player's real date of birth and age
 UPDATE players
@@ -344,7 +362,7 @@ WHERE player_id = 'p1';
 SELECT * FROM players;
 UPDATE players
 SET 
-	date_of_birth = '1995-07-13',
+	date_of_birth = '1990-07-15',
 	age = 20
 WHERE player_id = 'p1';
 

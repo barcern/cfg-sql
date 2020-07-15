@@ -3,6 +3,8 @@
 SELECT 
 	COUNT(g.fk_goal_assist_player1),
     COUNT(g.fk_goal_assist_player2),
+    #(SELECT COUNT(fk_goal_assist_player1) FROM goals GROUP BY fk_goal_assist_player1),
+    #(SELECT COUNT(g.fk_goal_assist_player2) FROM goals g GROUP BY g.fk_goal_assist_player2),
     (SELECT COUNT(g.fk_goal_assist_player1) FROM goals GROUP BY g.fk_goal_assist_player1) +
 	(SELECT COUNT(g.fk_goal_assist_player2) FROM goals GROUP BY g.fk_goal_assist_player2) total_assists, 
     ((SELECT COUNT(g.fk_goal_assist_player1)) +
@@ -15,7 +17,11 @@ INNER JOIN players ON g.fk_goal_assist_player1 = players.player_id
 GROUP BY players.player_id
 ORDER BY total_assists_per_games DESC;
 
-SELECT COUNT(fk_goal_assist_player2) FROM goals WHERE fk_goal_assist_player2 = 'p5';
+SELECT COUNT(fk_goal_assist_player2) FROM goals WHERE fk_goal_assist_player2 = 'p6';
+SELECT COUNT(fk_goal_assist_player1) FROM goals WHERE fk_goal_assist_player1 = 'p6';
+SELECT COUNT(g.fk_goal_assist_player1), fk_goal_assist_player1 FROM goals g GROUP BY g.fk_goal_assist_player1;
+(SELECT COUNT(g.fk_goal_assist_player2), fk_goal_assist_player2 FROM goals g GROUP BY g.fk_goal_assist_player2);
+
 
 SELECT * FROM goals;
 
