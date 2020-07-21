@@ -609,29 +609,80 @@ Session 7 - db design and data visualisation
 - can export results into csv
 - homework
 	- review slides
-	- project
+	- project - done
 		- include min 5 tables, ER diagram
 		- primary and foreign keys
 		- joins, stored function, query with subquery
 		- 3 out of: stored procedure, trigger, event, view with 3-4 base
 		tables plus query, group by and having
 
+##############################################################################################################
+Session 8 - project presenations
+- show data source
+- show ER diagram and explain links between tables
+- show queries
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+##############################################################################################################
+Session 9 - extra info session
+- run SQL queries to get data out of db, then use python and R to build info
+- what to expect in a tech interview
+	- wordy part
+	- skills part
+		- can be take-home
+		- in interview
+			- in programme on screenshare
+			- on whiteboard - harder since can't test
+		- will make mistakes > don't panic and learn to read/fix errors in a calm manner
+		- practice both options
+- when to apply for job
+- research the job / company in detail
+- courses
+	- code academy (not free)
+	- youtube
+- data science - need a solid understanding of algorithms + coding
+	- regression models - easy to explain, decision trees, clustering, neural networks
+- mock interview 
+	- example query: top 3 authors who sold most books in total
+	SELECT a.author_name, SUM(b.sold_copies) total_copies_sold
+	FROM authors a
+	INNER JOIN books b ON a.book_name = b.book_name
+	GROUP BY a.author_name
+	ORDER BY SUM(b.sold_copies) DESC
+	LIMIT 3;
+	- example query: print every department where the average salary per employee is lower than £500
+	SELECT e.department_name, SUM(s.salary)/COUNT(s.salary) AS average_salary
+	FROM employees e
+	INNER JOIN salaries s
+	ON e.employee_id = s.employee_id
+	GROUP BY e.department_name
+	ORDER BY average_salary ASC
+	HAVING average_salary < 500;
+	can use AVG(salaries.salary)
+	- example questions
+		- what is MySQL? what is SQL? db management software, db querying language
+		- default port: 3360
+		- how can you find out version of installed MySQL? run a command
+		SHOW VARIABLES LIKE “%version%”;
+		- differences between char and varchar? char is fixed length, 
+		varchar is anything up to set value, char is faster
+		- filter duplicate data: use DISTINCT
+		- statement is SELECT query for partial matching: LIKE or regex
+		- change name of existing table using SQL statement: 
+		RENAME TABLE table_name TO new_name
+		- add/remove column in table: 
+		ALTER TABLE table_name ADD COLUMN column_name column_definition [FIRST|AFTER existing_column]
+		- what is a view? virtual table, returns data without creating a table in db,
+		table can be seen but isn't maintained in db
+		- difference between primary key and unique key: primary can never be null,
+		unique key can be null
+		- what is a join? method of combining two or more tables together
+		- 4 main types of join: left (keeps all rows in first table), 
+		right (keeps all rows in second table), 
+		inner (keeps rows which are in both tables), 
+		outer (keeps rows in one table only)
+		- sum values: use SUM(), must be numeric
+		- transaction: group of db operations done as single unit, every operation
+		must be successful for transaction to be successful, can commit / roll back
+		- functions of commit and roll back statements: commit to push changes to db,
+		roll back to return to previous state
 	
