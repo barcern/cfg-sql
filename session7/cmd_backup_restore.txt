@@ -1,0 +1,19 @@
+# These commands are to be run via cmd
+
+# Backup a single db
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -h 127.0.0.1 -u root -p bank > C:\tmp\bank.sql
+
+# Backup multiple dbs
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p --databases bank customers > C:\tmp\bank_customers.sql
+
+# Backup all dbs
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p --all-databases > C:\tmp\all_dbs.sql
+
+# Backup sweet table in bakery db
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p bakery sweet > C:\tmp\bakery_sweet.sql
+
+# Backup of stored procedures, functions, events and triggers
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p --triggers --events --routines bees > C:\tmp\bees_objects.sql
+
+# Restore a single db
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -h 127.0.0.1 -u root -p bakery < C:\tmp\bakerybackup.sql

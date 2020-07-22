@@ -15,8 +15,8 @@ tables:
 	- player: team, player_id, name, nationality, position etc. - data done
 	- game: game_id, away/home, win/loss, man of match, end type (ft, etc.), shots sent, shots received
 	- penalty: penalty_id, game_id, type, length, player_id - what do I do about other team's penalties?
-	- scoring: score_id, game_id, player_id, time, period
-	- netminders: player_id, game_id, time, goals
+	- goal (originally scoring): score_id, game_id, player_id, time, period
+	- netminders (descoped): player_id, game_id, time, goals
 	- standing: game_id, points scored, number in league, team1, team2, team who scored, date
 
 import data as csv
@@ -25,3 +25,4 @@ ideas:
 	- view for standings
 	- procedure to calculate standings
 	- count per periods
+	- highest scoring player per games played

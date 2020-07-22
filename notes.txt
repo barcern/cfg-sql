@@ -579,8 +579,8 @@ Session 6 - data management using SQL coding techniques
 	DROP EVENT event_name
 - homework
 	- review slides - done
-	- write function, procedure, trigger and event
-	- link back to project
+	- write function, procedure, trigger and event - done
+	- link back to project - done
 	- download and install tableau public (free version) - done
 	
 ##############################################################################################################
@@ -596,19 +596,26 @@ Session 7 - db design and data visualisation
 		mysqldump options > folder
 		e.g.
 		mysqldump -h 127.0.0.1 -u root -p bakery > C:\bakery\bakerybackup.sql
+		mysqldump -u root -p --databases bakery bank > C:\bakery\bakery_bankbackup.sql
+		mysqldump -u root -p --all-databases > C:\backups\all_dbs.sql
+		mysqldumpt -u root -p bakery sweet > C:\backups\bakery_sweettable.sql
+		--no-data to include db structure only
+		--no-create-info to include data only
+		--triggers --events --routines
 	- db restore
 		- always test
 		- to restore:
 		mysql options < folder
 		e.g.
 		mysql -h 127.0.0.1 -u root -p bakery < C:\bakery\bakerybackup.sql
+		- can restore from workbench
 - entity relationship diagram
 	- workbench - reverse engineering to display the diagram
 	- workbench > db > reverse engineer
 - can import data from csv
 - can export results into csv
 - homework
-	- review slides
+	- review slides - done
 	- project - done
 		- include min 5 tables, ER diagram
 		- primary and foreign keys
